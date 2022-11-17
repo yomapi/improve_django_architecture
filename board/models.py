@@ -7,8 +7,6 @@ class Board(BaseModel):
     board_name = models.CharField(max_length=100)
 
     class Meta:
-        abstract = False
-        managed = True
         db_table = "board"
 
 
@@ -26,6 +24,4 @@ class Post(BaseModel):
     content = models.TextField()
 
     class Meta:
-        abstract = False
-        managed = True
         db_table = "post"

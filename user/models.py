@@ -7,6 +7,4 @@ class User(BaseModel):
     email = models.CharField(max_length=50)
 
     class Meta:
-        abstract = False
-        managed = True
         db_table = "user"

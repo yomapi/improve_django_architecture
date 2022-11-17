@@ -14,11 +14,13 @@ class BaseModel(models.Model):
         managed = False
 
 
-class BaseRepo:
+class AbstractRepo:
     def __init__(self, model: BaseModel, serializer: serializers) -> None:
         self.model = model
         self.serializer = serializer
 
+
+class BaseRepo(AbstractRepo):
     def create(self, data: dict) -> dict:
         serializer = self.serializer(data=data)
         serializer.is_valid(raise_exception=True)
@@ -37,3 +39,26 @@ class BaseRepo:
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return serializer.data
+
+
+class FakeBaseRepo(AbstractRepo):
+    def __init__(self, model: BaseModel) -> None:
+        self.in_memory_db = dict()
+        self.model = model
+
+    def create(self, data: dict) -> dict:
+        self.in_memory_db[str(data["id"])] = data
+        return data
+
+    def get_by_id(self, id: int) -> Union[dict, None]:
+        data_id_str = str(id)
+        return self.in_memory_db.get(data_id_str, None)
+
+    def update(self, data_id: int, data: dict):
+        data_id_str = str(data_id)
+        if data_id_str:
+            raise self.model.DoesNotExist
+        update_target = self.get_by_id(data_id)
+        for column_name in data.keys():
+            self.in_memory_db[data_id_str][column_name] = update_target[column_name]
+        return update_target
