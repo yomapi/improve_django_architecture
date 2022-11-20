@@ -31,5 +31,4 @@ python manage.py runserver
 
 ##### improve-test-code
 Service 레이어와 repository 레이어의 의존성을 끊어, 테스트 코드를 개선한 프로젝트 입니다.
-자세한 내용은 블로그 글을 참고해주세요.
-https://velog.io/@yomapi/1.-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C-%EA%B0%9C%EC%84%A0-service%EC%99%80-repository%EC%9D%98-%EC%9D%98%EC%A1%B4%EC%84%B1-%EB%81%8A%EA%B8%B0
+자세한 내용은 [블로그 글](https://velog.io/@yomapi/1.-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C-%EA%B0%9C%EC%84%A0-service%EC%99%80-repository%EC%9D%98-%EC%9D%98%EC%A1%B4%EC%84%B1-%EB%81%8A%EA%B8%B0)을 참고해주세요.
